@@ -3,6 +3,7 @@ class HashTable {
       this.data = new Array(size);
     }
   
+    //underscore indicates private property, developer's standard, doesn't really do anything
     _hash(key) {
       let hash = 0;
       for (let i =0; i < key.length; i++){
@@ -13,16 +14,26 @@ class HashTable {
 
     set(key, value){
         let index = this._hash(key);
-        this.data[index] = value;
+        if(!this.data[index]){
+            this.data[index] = [];
+        }
+        this.data[index].push([key, value])
+        console.log(this.data)
     }
 
     get(key){
         let index = this._hash(key);
-        return this.data[index];
+        const currentBucket = this.data[index];
+        if(currentBucket){
+            for (let i=0; i < currentBucket.length; i++){
+                if(currentBucket[i][0]===key) return currentBucket[i][1]
+            }
+        }
+        return undefined;
     }
   }
   
-  const myHashTable = new HashTable(50);
+  const myHashTable = new HashTable(2);
   myHashTable.set('grapes', 10000)
   console.log(myHashTable.get('grapes'))
   myHashTable.set('apples', 9)
