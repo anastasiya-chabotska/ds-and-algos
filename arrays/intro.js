@@ -5,16 +5,20 @@ const numbers = [1,2,3,4,5];
 
 
 //push
+//O(1)
 strings.push('e'); //adds at the end of the array
 
 //pop
+//O(1)
 strings.pop(); //remove last item at the end
 strings.pop();
 
 //unshift
-// strings.unshift('x')
+//O(n)
+strings.unshift('x'); //adds an item to the beginning
 
-// //splice
-// strings.splice(2, 0, 'alien');
+//splice
+//O(n)
+strings.splice(2, 0, 'alien'); //inserts an item
 
 console.log(strings)
