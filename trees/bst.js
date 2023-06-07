@@ -10,34 +10,69 @@ class BinarySearchTree {
   constructor() {
     this.root = null;
   }
-  insert(value) {
 
-    let newNode = new Node(value);
+  // insert(value) {
 
-    //Code here
-    if (this.root == null) 
-    {
-      this.root = newNode;
-      return newNode;
-    }
+  //   let newNode = new Node(value);
 
-    let curNode = this.root;
-    let prevNode = curNode;
+  //   //Code here
+  //   if (this.root == null) 
+  //   {
+  //     this.root = newNode;
+  //     return newNode;
+  //   }
 
-    while (curNode !== null) {
+  //   let curNode = this.root;
+  //   let prevNode = curNode;
 
-      prevNode = curNode;
+  //   while (curNode !== null) {
 
-      if(value < curNode.value) curNode = curNode.left;
-      else if(value > curNode.value) curNode = curNode.right;
+  //     prevNode = curNode;
+
+  //     if(value < curNode.value) curNode = curNode.left;
+  //     else if(value > curNode.value) curNode = curNode.right;
 
 
-    }
+  //   }
 
     
-    if(value < prevNode.value) prevNode.left = newNode;
-    else prevNode.right = newNode;
-    return newNode;
+  //   if(value < prevNode.value) prevNode.left = newNode;
+  //   else prevNode.right = newNode;
+  //   return newNode;
+
+  // }
+
+  insert(value){
+
+    const newNode = new Node(value);
+
+    if(this.root === null){
+      this.root = newNode
+    }
+    else {
+      let currentNode = this.root;
+      //while true makes it loop until you exit
+      while(true){
+        if(value < currentNode.value){
+          //left
+          //if nothing to the left, put new node there
+          if(!currentNode.left){
+            currentNode.left = newNode;
+            return this;
+          }
+          //else move left
+          currentNode = currentNode.left;
+        }
+        else {
+          //right
+          if(!currentNode.right){
+            currentNode.right = newNode;
+            return this;
+          }
+          currentNode = currentNode.right;
+        }
+      }
+    }
 
   }
 
