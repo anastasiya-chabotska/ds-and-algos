@@ -84,12 +84,48 @@ class BinarySearchTree {
       else if (value < curNode.value) curNode = curNode.left;
       else if (curNode.value == value) return curNode
     }
-    return null;
+    return false;
   }
   // remove
+
+  remove(value){
+    if(!this.root) return false;
+
+    let currentNode = this.root;
+    let parent = null;
+
+    //first find the node to be deleted
+    while(currentNode){
+      if(value < currentNode.value){
+        parent = currentNode;
+        currentNode = currentNode.left;
+      }
+      else if (value > currentNode.value){
+        parent = currentNode;
+        currentNode = currentNode.right;
+      }
+      //here it is, now perform the removal
+      else if (value === currentNode.value){
+
+        //case 1: no children
+        if (!currentNode.right && !currentNode.left){
+
+        }
+
+        //case 2: one child
+        if((!currentNode.right && currentNode.left) 
+        ||(!currentNode.left && currentNode.right) 
+        ){
+          
+        }
+
+      }
+    }
+  }
 }
 
 const tree = new BinarySearchTree();
+console.log(tree.lookup(0));
 tree.insert(9)
 tree.insert(4)
 tree.insert(6)
@@ -97,6 +133,7 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
+console.log(tree.lookup(20))
 console.log(JSON.stringify(traverse(tree.root)))
 
 //     9
