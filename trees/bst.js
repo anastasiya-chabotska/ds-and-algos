@@ -110,13 +110,83 @@ class BinarySearchTree {
         //case 1: no children
         if (!currentNode.right && !currentNode.left){
 
+          console.log("case 1")
+          //simply detach it
+          
+          //if node tbd is parent's right set right to null
+          if(parent.right) parent.right = null;
+          //if it's parent's left, set left to null
+          else if (parent.left) parent.left = null
+
+          return;
         }
 
         //case 2: one child
         if((!currentNode.right && currentNode.left) 
         ||(!currentNode.left && currentNode.right) 
         ){
+
+          let child;
+          if(currentNode.left) child = currentNode.left;
+          else if(currentNode.right) child = currentNode.right;
+
+          //means it's left child of the parent
+          if(currentNode.value < parent.value){
+            parent.left = child;
+          }
+          //right or equal
+          else parent.right = child;
           
+          return;
+        }
+
+        //case 3: 2 children
+        if(currentNode.left && currentNode.right){
+
+          let parentMin = currentNode;
+          let min = currentNode.right;
+
+          while(min.left){
+            parentMin = min;
+            min = min.left;
+          }
+
+          //now set the node to be deleted to be the min we just founf
+          currentNode.value = min.value;
+
+          //now deal with children
+
+          //if min is case 1 or case 2, we will not have case 3 again, since we will always get the leftmost
+
+          //case 1 on min
+          if(!min.left && !min.right ){
+            //min is a left child
+            if(min.value < parentMin.value){
+
+              parentMin.left = null;
+            }
+            else parentMin.right = null
+          }
+
+          //case 2 on min
+          if((!min.right && min.left) 
+          ||(!min.left && min.right) 
+          ){
+  
+            let child;
+            if(min.left) child = min.left;
+            else if(min.right) child = min.right;
+  
+            //means it's left child of the parent
+            if(min.value < parentMin.value){
+              parentMin.left = child;
+            }
+            //right or equal
+            else parentMin.right = child;
+            
+          }
+
+          return;
         }
 
       }
@@ -133,6 +203,8 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
+
+tree.remove(170)
 console.log(tree.lookup(20))
 console.log(JSON.stringify(traverse(tree.root)))
 
