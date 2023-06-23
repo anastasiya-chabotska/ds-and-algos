@@ -9,10 +9,10 @@ function selectionSort(array) {
     //while start < arr.length 
 
     let start = 0;
-    let indexMin = 0;
     while (start < array.length) {
+        let indexMin = start;
         console.log("start is now at: ", start)
-        for (let i = start; i < array.length; i++) {
+        for (let i = start + 1; i < array.length; i++) {
 
             if (array[i] < array[indexMin]) {
                 console.log("new min ", array[i])
