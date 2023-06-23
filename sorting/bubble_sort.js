@@ -21,10 +21,12 @@ function bubbleSort(array) {
 
     }
 
+    return array;
 }
 
 function bubbleSort2(array){
 
+    //outer loop ensures it runs the complete comparisons n times
     for(let i=0; i<array.length; i++){
         for(let j=0; j<array.length; j++){
             if(array[j] > array[j+1]){
@@ -37,4 +39,5 @@ function bubbleSort2(array){
 }
 
 bubbleSort2(numbers);
+bubbleSort([1, 2, 3, 4, 5])
 console.log(numbers);
