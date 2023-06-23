@@ -14,3 +14,15 @@ const basket2 = [65, 60, 61, 62, 63, 67, 64, 7]
 console.log(basket2.sort())
 //because
 '65'.charCodeAt(0)
+
+//so do this instead
+
+basket.sort(function(a, b){
+    return a - b;
+})
+
+
+const spanish = ['único', 'árbol', 'cosas', 'fútbol']
+spanish.sort(function(a, b){
+    return a.localeCompare(b)
+})
