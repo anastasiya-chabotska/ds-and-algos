@@ -15,6 +15,7 @@ function fibonacciIterative2(n) {
 
 }
 
+//O(n) O(n-2)
 function fibonacciIterative(n) {
     if (n === 0) return 0;
     if (n === 1) return 1;
@@ -35,6 +36,8 @@ function fibonacciIterative(n) {
 }
 console.log(fibonacciIterative(8));
 
+
+//O(2^n)
 function fibonacciRecursive(n) {
     //or if (n<2) return n
     if (n === 0) return 0;
