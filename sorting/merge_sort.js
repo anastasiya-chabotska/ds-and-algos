@@ -10,6 +10,9 @@ function mergeSort(array) {
     let left = array.slice(0, middle)
     let right = array.slice(middle, array.length);
 
+    console.log("left: ", left)
+    console.log("right: ", right)
+
     return merge(
         mergeSort(left),
         mergeSort(right)
@@ -18,15 +21,15 @@ function mergeSort(array) {
 
 function merge(left, right) {
 
-    console.log("merge ", left, right)
-    if (left.length == 1 && right == undefined) return left;
-    if (right.length == 1 && left == undefined) return right;
+    // //console.log("merge ", left, right)
+    // if (left.length == 1 && right == undefined) return left;
+    // if (right.length == 1 && left == undefined) return right;
 
     let result = [];
     let leftIndex = 0;
     let rightIndex = 0;
     while (leftIndex < left.length && rightIndex < right.length) {
-        console.log("loop ")
+        //console.log("loop ")
 
         if (left[leftIndex] <= right[rightIndex]) {
             result.push(left[leftIndex]);
@@ -38,15 +41,15 @@ function merge(left, right) {
         }
     }
 
-    console.log("after loop indeces ", leftIndex, rightIndex)
+    //console.log("after loop indeces ", leftIndex, rightIndex)
 
     if (leftIndex < left.length) {
-        console.log("leftovers in left")
+        //console.log("leftovers in left")
         result = result.concat(left.slice(leftIndex, left.length))
     }
     else result = result.concat(right.slice(rightIndex, right.length))
 
-    console.log("result ", result)
+    //console.log("result ", result)
 
     return result;
 }
