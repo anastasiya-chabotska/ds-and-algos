@@ -2,6 +2,8 @@
  * @param {string} s
  * @return {boolean}
  */
+
+//Time: O(n) Space: O(n)
 var isPalindrome = function(s) {
 
     //remove all non-alphanumeric characters
@@ -26,6 +28,7 @@ var isPalindrome = function(s) {
     
 };
 
+//Time: O(n) Space: O(1)
 var isPalindrome2 = function(s) {
 
 
@@ -57,6 +60,11 @@ var isPalindrome2 = function(s) {
     
 };
 
+
+//localeCompare is more optimal for special unicode characters
+//'ß'.toUpperCase() transforms the string to SS. Wow, not expected. In my opinion the ß should not be changed. But for this I prefer toLowerCase() for case insensitive check.
+
+//since the problem mentions that we only care about alphanumeric then toLowerCase should be fine
 
 console.log(isPalindrome2("race a car"))
 
