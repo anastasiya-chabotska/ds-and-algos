@@ -2,6 +2,8 @@
  * @param {number[]} prices
  * @return {number}
  */
+
+//Time: O(n) Space: O(1)
 var maxProfit = function(prices) {
 
     //if length less than 2 return 0
@@ -41,6 +43,27 @@ var maxProfit = function(prices) {
     
 };
 
+var maxProfit2 = function(prices) {
+
+
+    let [i, j, max] = [0, 1, 0];
+
+    while(j < prices.length){
+        //if profitable
+        if(prices[j] > prices[i]){
+            let profit = prices[j] - prices[i];
+            max = Math.max(profit, max)
+        }
+        else {
+            i = j;
+        }
+        j++
+    }
+
+    return max;
+
+    
+};
 
 /*
 Brute Force 
@@ -52,4 +75,4 @@ for each item in the array, check all the combinations
 
 let prices = [7,1,5,3,6,4];
 
-console.log(maxProfit(prices));
+console.log(maxProfit2(prices));
