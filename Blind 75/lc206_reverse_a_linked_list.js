@@ -46,6 +46,18 @@ var reverseListRec = function(head) {
     head.next = null;
     return newHead;
  }
+
+
+ var reverseList2 = function(head){
+    if(head.next == null) return head;
+
+
+    let newHead = reverseList2(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
+
+ }
  
 
 let n1 = new ListNode(1);
@@ -57,7 +69,7 @@ n2.next = n3;
 n3.next = n4;
 
 console.log(n1);
-console.log((reverseListRec(n1)));
+console.log((reverseList2(n1)));
 
 
 
