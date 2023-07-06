@@ -28,6 +28,26 @@ var reverseList = function(head) {
 
 };
 
+
+//Time: O(n) Space: O(1)
+var reverseListRec = function(head) {
+
+    if (head.next == null) return head;
+
+    return reverse(head);
+ 
+ };
+
+ var reverse = (head) => {
+    let newHead = reverseListRec(head.next);
+    console.log("new head: ", newHead)
+    console.log("head.next.next", head.next)
+    head.next.next = head;
+    head.next = null;
+    return newHead;
+ }
+ 
+
 let n1 = new ListNode(1);
 let n2= new ListNode(2);
 let n3= new ListNode(3);
@@ -37,7 +57,7 @@ n2.next = n3;
 n3.next = n4;
 
 console.log(n1);
-console.log(JSON.stringify(reverseList(n1)));
+console.log((reverseListRec(n1)));
 
 
 
