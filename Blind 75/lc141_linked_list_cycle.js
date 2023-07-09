@@ -58,13 +58,43 @@ var hasCycle2 = function(head) {
     
 };
 
+
+/*Floyd's Tortoise and Hare
+- keep slow and fast pointers
+- slow moves by one
+- fast moves by two
+- if they ever meet - that's a cycle
+- otherwise, fast will reach null and exit
+- they're guaranteed to meet, b/c
+    - the distance between fast and slow is n
+    - every time the distance n is decreased by 2 and increased by 1, n = n + 1 - 2, n= n -1 -> which will eventually be zero
+*/
+
+var hasCycle2 = function(head) {
+    
+ 
+    let slow = head;
+    let fast = head;
+
+    while(fast!=null && fast.next!=null){
+        slow = slow.next;
+        fast = fast.next.next;
+        if(slow == fast) return true
+
+    }
+
+    return false;
+    
+};
+
+
 let n1 = new ListNode(3)
 let n2 = new ListNode(2)
 let n3 = new ListNode(0)
 let n4 = new ListNode(-4)
 n1.next = n2;
-n2.next = n3;
-n3.next = n4;
-n4.next = n2;
+n2.next = n1;
+// n3.next = n4;
+// n4.next = n2;
 
 console.log(hasCycle2(n1))
