@@ -21,10 +21,6 @@ function mergeSort(array) {
 
 function merge(left, right) {
 
-    // //console.log("merge ", left, right)
-    // if (left.length == 1 && right == undefined) return left;
-    // if (right.length == 1 && left == undefined) return right;
-
     let result = [];
     let leftIndex = 0;
     let rightIndex = 0;
