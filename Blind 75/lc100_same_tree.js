@@ -36,3 +36,25 @@ var isSameTree = function(p, q) {
 return true;
 
 };
+
+
+//DFS recursion
+var isSameTree2 = function(p, q) {
+    
+   
+    //if p and q are null return true
+    if(p==null && q==null) return true
+
+    //if p is null and q is not null return false
+    if((p==null && q!=null) || (p!=null && q==null)) return false
+
+    //if p is not null and q is not null and the values are dufferent return false
+    if(p.val != q.val) return false
+
+    let left = isSameTree2(p.left, q.left);
+    let right = isSameTree2(p.right, q.right);
+
+    return left && right;
+
+
+};
