@@ -2,7 +2,11 @@
  * @param {number} n
  * @return {number}
  */
+
+//Time: O(n) Space: O(1) - since we can only keep 2 values, not the whole DP array
 var climbStairs = function(n) {
+    if(n == 1) return 1
+    if(n == 2) return 2
 
    //starting at the bottom
 
@@ -18,7 +22,7 @@ var climbStairs = function(n) {
     result = one + two;
     temp = two;
     two = result;
-    one = two;
+    one = temp;
     
    }
 
