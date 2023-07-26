@@ -2,6 +2,8 @@
  * @param {number} n
  * @return {number[]}
  */
+
+//Time: O(n) Space: O(1)
 var countBits = function(n) {
 
     let dp = [0];
