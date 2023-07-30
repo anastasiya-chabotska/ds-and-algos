@@ -31,3 +31,27 @@
     "ant": ["tan"]
 }
 */
+
+
+//Time: O(n * m)
+//Space: O(n * 26m) (n*m)
+var groupAnagrams3 = function(strs) {
+    
+    let anagrams = {}
+
+    for(let s of strs){
+
+        let count = Array(26).fill(0);
+        for(let c of s){
+
+            let index = c.charCodeAt(0) - 'a'.charCodeAt(0);
+            count[index]+=1;
+        }
+        
+        if(anagrams[count]) anagrams[count].push(s);
+        else anagrams[count] = [s]
+    }
+
+    return Object.values(anagrams)
+
+};
