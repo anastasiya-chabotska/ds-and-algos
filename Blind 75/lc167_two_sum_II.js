@@ -3,6 +3,8 @@
  * @param {number} target
  * @return {number[]}
  */
+
+//Time: O(n) Space: O(1)
 var twoSum = function(numbers, target) {
     let [left, right] = [0, numbers.length - 1];
 
