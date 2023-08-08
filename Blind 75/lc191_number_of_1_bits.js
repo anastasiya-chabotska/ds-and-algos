@@ -31,6 +31,10 @@ var hammingWeight2 = function(n) {
     
 };
 
+//T: O(1) S: O(1)
+//you can also mod by 2
+//if there's a remainder, that means last bit is 1 (since you need 1)
+//and then to shift you divide by 2
 var hammingWeight = function(n){
     //00000000000000000000000000001011
     //&

@@ -39,13 +39,14 @@ return true;
 
 
 //DFS recursion
+//Time: O(p + q)
 var isSameTree2 = function(p, q) {
     
    
-    //if p and q are null return true
+    //both null nodes
     if(p==null && q==null) return true
 
-    //if p is null and q is not null return false
+    //one null the other with value
     if((p==null && q!=null) || (p!=null && q==null)) return false
 
     //if p is not null and q is not null and the values are dufferent return false

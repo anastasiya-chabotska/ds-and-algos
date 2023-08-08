@@ -1,0 +1,41 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+
+    let max = 0;
+    let map = {};
+    let tempMax = 0;
+
+
+    for(let i = 0; i< s.length; i++){
+        //encountered a duplicate
+        if(map[s[i]]!=null){
+     
+            //remove all the keys <= this index from the map
+            map = removeKeys(map, map[s[i]])
+            map[s[i]] = i;
+            //check if tempMax > max
+            max = tempMax > max ? tempMax :  max;
+            //reset tempMax to map.keys.length
+            tempMax = Object.keys(map).length;
+        }
+        else{
+            map[s[i]] = i;
+            tempMax++;
+            max = tempMax > max ? tempMax :  max;
+        }
+    }
+    return max;
+    
+};
+
+var removeKeys = function(map, index){
+
+    let keys = Object.keys(map);
+    for(let i = 0; i < keys.length; i++){
+        if(map[keys[i]]<=index) delete map[keys[i]]
+    }
+    return map;
+}
