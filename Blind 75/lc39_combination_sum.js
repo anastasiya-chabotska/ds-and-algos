@@ -3,6 +3,9 @@
  * @param {number} target
  * @return {number[][]}
  */
+
+//space complexity is O(target val / smallest val in candidates) b/c max depth of the tree is when it keeps adding the smallest element to the combination until it hits or exceeds target. time: O(number of candidates^max depth)
+//2^t - because each time you make 2 decisions, and the max height of it will equal to the target number, otherwise we stop
 var combinationSum = function(candidates, target) {
     let res = []
 
@@ -34,7 +37,7 @@ var combinationSum = function(candidates, target) {
     return res;
 };
 
-
+//O(n*target*avg(third for loop))
 var combinationSum = function(candidates, target) {
     
   let dp = new Array(target+1).fill(null).map(()=>[]);
