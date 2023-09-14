@@ -208,6 +208,19 @@ class Node {
 
 
     }
+
+    breadthFirstSearchRecursive(queue, list){
+        
+        if(!queue.length) return list;
+        let node = queue.shift();
+        list.push(node.value);
+        if(node.left) queue.push(node.left)
+        if(node.right) queue.push(node.right)
+        return this.breadthFirstSearchRecursive(queue, list)
+
+       
+        
+    }
   }
   
   const tree = new BinarySearchTree();
@@ -224,6 +237,7 @@ class Node {
   console.log(tree.lookup(20))
   console.log(JSON.stringify(traverse(tree.root)))
   console.log(tree.breadthFirstSearch())
+  console.log(tree.breadthFirstSearchRecursive([tree.root], []))
   
   //     9
   //  4     20
