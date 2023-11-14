@@ -17,3 +17,21 @@ function containerWithMostWaterBF(height){
     return maxArea;
 
 }
+
+
+var maxArea = function(height){
+
+    let maxArea = 0;
+    let a = 0;
+    let b = height.length - 1;
+    while (a < b){
+        let length = Math.min(height[a], height[b]);
+        let width = b - a;
+        let area = length * width;
+        maxArea = Math.max(maxArea, area);
+
+        if(height[a] < height[b]) a++;
+        else b--;
+    }
+    return maxArea;
+}
