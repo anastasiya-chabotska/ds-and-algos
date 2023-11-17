@@ -23,3 +23,36 @@ var backspaceCompareBF = function(s, t) {
     
 };
 
+
+const removeHashes = function (string){
+
+    let finalString = [];
+
+    for (let i =0; i < string.length; i++){
+        if(string[i]=='#'){
+            finalString.pop();
+        }
+        else{
+            finalString.push(string[i]);
+        }
+    }
+
+    return finalString;
+}
+
+const backspaceCompareBF2 = function(s, t){
+    let finalS = removeHashes(s);
+    let finalT = removeHashes(t);
+
+    if(finalS.length!==finalT.length) return false;
+    else{
+        for(let i =0; i < finalS.length; i++){
+            if(finalS[i]!==finalT[i]) return false
+        }
+    }
+    return true;
+}
+
+
+console.log(backspaceCompareBF2("a#c", "b"))
+
