@@ -1,3 +1,39 @@
+const backspaceCompareFinal = function(s, t){
+
+    let p1 = s.length - 1, p2 = t.length - 1;
+
+    while(p1 >= 0 || p2 >= 0){
+        console.log({p1, p2})
+        if(s[p1] === '#' || t[p2] === '#'){
+            if(s[p1]=== '#'){
+                let backTrackCount = 2;
+                while(backTrackCount > 0){
+                    p1--;
+                    backTrackCount--;
+                    if(s[p1]==='#') backTrackCount += 2;
+                }
+            }
+            if(t[p2]=== '#'){
+                let backTrackCount = 2;
+                while(backTrackCount > 0){
+                    p2--;
+                    backTrackCount--;
+                    if(t[p2]==='#') backTrackCount += 2;
+                }
+            }
+        }
+        else{
+            if(s[p1]!==t[p2]) return false;
+            else{
+                p1--;
+                p2--;
+            }
+        }
+    }
+    return true;
+
+}
+
 const movePointer = function (index, string, numHashes = 0) {
     let p = index;
 
