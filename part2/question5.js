@@ -19,3 +19,26 @@ var lengthOfLongestSubstringBF = function(s) {
     }
     return max;
 }
+var lengthOfLongestSubstring = function(s) {
+    if(s.length <= 1) return s.length;
+
+    let max = 0, left = 0, right = 0, seenChars = {};
+
+    while(right < s.length){
+        let currentChar = s[right];
+        if(seenChars[currentChar]==null){
+            seenChars[currentChar] = right;
+            let currentLength = right - left + 1;
+            max = Math.max(currentLength, max);
+            right++;
+        }
+        else{
+            left = seenChars[currentChar] + 1;
+            right = left;
+            seenChars = {};
+        }
+
+    }
+    return max;
+
+}
