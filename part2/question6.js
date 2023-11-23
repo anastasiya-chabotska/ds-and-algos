@@ -1,3 +1,48 @@
+var validPalindrome = function(s) {
+
+    let left = 0, right = s.length - 1;
+    while(left < right){
+        if(s[left]!=s[right]){
+            return validSubPalindrome(s, left + 1, right) || validSubPalindrome(s, left, right - 1);
+        }
+        left++;
+        right--;
+    }
+    return true;
+ 
+  
+};
+
+var validSubPalindrome = function(s, left, right){
+   while(left < right){
+       if(s[left]!==s[right]) return false
+       left++;
+       right--;
+   }
+   return true;
+}
+
+
+
+//Almost Palindrome (my solution)
+var validPalindrome = function(s, left = 0, right = s.length - 1, deleted = false) {
+    while(left < right){
+        if(s[left]!=s[right]){
+          
+
+            if(!deleted){
+               return validPalindrome(s, left + 1, right, true) || validPalindrome(s, left, right - 1, true)
+    }
+    else return false;
+        }
+        left++;
+        right--;
+   
+    }
+    return true;
+  
+};
+
 //compare against reverse
 var isPalindrome3 = function (s) {
 
