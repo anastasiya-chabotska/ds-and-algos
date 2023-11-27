@@ -31,3 +31,34 @@ var reverseBetween = function(head, left, right) {
     return dummyNode.next;
 
 }
+
+
+//solution from the course
+var reverseBetween = function(head, left, right) {
+
+    let currentPosition = 1, currentNode = head, start = head;
+  
+    while(currentPosition < left){
+        start = currentNode;
+        currentNode = currentNode.next;
+        currentPosition++;
+    }
+  
+    //start is now before left, current is at left
+    let newList = null, tail = currentNode;
+    while(currentPosition >= left && currentPosition <= right){
+        let tempNext = currentNode.next;
+        currentNode.next = newList;
+        newList = currentNode;
+        currentNode = tempNext;
+        currentPosition++;
+    }
+  
+    //newList is now at right, currentNode is next to right
+    start.next = newList;
+    tail.next = currentNode;
+  
+    if(left > 1) return head;
+    else return newList;
+  
+  }
