@@ -41,3 +41,39 @@ var helper = function(curNode){
     return tempNext;
 
 }
+
+
+
+//working
+var flatten = function(head) {
+    
+    let current = head;
+    while(current){
+        if(current.child){
+            //merge
+            let child = current.child;
+            while(child.next){
+                child = child.next;
+            }
+ 
+            //4 and 10
+            child.next = current.next;
+            if(current.next) current.next.prev = child;
+            
+            //3 and 7
+            current.next = current.child;
+            current.child.prev = current;
+ 
+            current.child = null;
+ 
+        }
+        current.prev ? console.log("prev ", current.prev.val) : console.log("prev null")
+         console.log(current.val)
+ 
+        current.next ? console.log("next ", current.next.val) : console.log("next null")
+ 
+        current = current.next;
+    }
+    return head;
+ 
+ };
