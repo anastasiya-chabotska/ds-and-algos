@@ -13,3 +13,6 @@ spanish.sort(function(a, b){
 })
 
 
+basket.sort(function(a, b){
+    return a - b;
+})
