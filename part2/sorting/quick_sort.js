@@ -1,5 +1,9 @@
-const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
+// const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
+const numbers = [1, 2, 3, 4, 5, -10];
 
+//other solutions include partition functions
+//also, you can have 2 arrays left and right, and simply push smaller to left, higher to right
+//another way is to have i, j and pivot, swap i and j if i < pivot, then swap i and pivot at the end
 function quickSort(array, left, right) {
 
     if (right - left < 1) return array[left];
