@@ -1,33 +1,28 @@
+var searchRange = function(nums, target) {
+    let index = binarySearch(nums, target, 0, nums.length - 1);
+    let start = index, end = index;
+    while(true){
 
-const binarySearch = function(array, target){
-    let left = 0, right = array.length - 1;
-    while(left <= right){
-        let mid = Math.floor((left + right)/2);
-        let foundValue = array[mid];
-        if(foundValue === target) return mid;
-        else if(target < foundValue){
-            right = mid - 1;
-        }
-        else {
-            left = mid + 1;
-        }
+        let newStart = binarySearch(nums, target, 0, start - 1);
+        if(newStart!==-1) start = newStart;
+        else break;
+    }
+      while(true){
+
+        let newEnd = binarySearch(nums, target, end + 1, nums.length - 1);
+        if(newEnd!==-1) end = newEnd;
+        else break;
     }
 
+    return [start, end];
+};
+
+var binarySearch = function(array, target, start, end){
+    while(start <= end){
+        let mid = Math.floor((start + end)/2);
+        if(array[mid]==target) return mid;
+        else if(target < array[mid]) end = mid - 1;
+        else start = mid + 1;
+    }
     return -1;
 }
-
-
-//recursion is increasing memory
-const binarySearch1 = function(array, left, right, value){
-    if(left <= right){
-    let mid = Math.floor((left + right)/2);
-    console.log({mid})
-    if(array[mid]==value) return mid;
-    else if(value < array[mid]) return binarySearch(array, left, mid - 1, value);
-    else return binarySearch(array, mid + 1, right, value)
-    }
-
-}
-
-const nums = [1, 2, 3, 4, 5, 6, 7];
-console.log(binarySearch(nums, 10))
