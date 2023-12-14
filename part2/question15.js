@@ -1,22 +1,19 @@
 var maxDepth = function (root) {
-
     return dfs(root, 0);
-    
-
-
 };
 
-var dfs = function(node, count){
-    if(!node) return count;
+var dfs = function (node, count) {
+    if (!node) return count;
     count++;
     return Math.max(dfs(node.left, count), dfs(node.right, count));
 }
 
 
-
-
-
-
+var maxDepth3 = function (node, count=0) {
+    if (!node) return count;
+    count++;
+    return Math.max(maxDepth3(node.left, count), maxDepth3(node.right, count));
+};
 
 
 
@@ -64,4 +61,4 @@ node2.left = node4;
 node2.right = node5;
 node5.right = node6;
 
-console.log(maxDepth(node1));
+console.log(maxDepth3(node1));
