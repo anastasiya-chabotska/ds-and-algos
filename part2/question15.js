@@ -1,5 +1,28 @@
 var maxDepth = function (root) {
 
+    return dfs(root, 0);
+    
+
+
+};
+
+var dfs = function(node, count){
+    if(!node) return count;
+    count++;
+    return Math.max(dfs(node.left, count), dfs(node.right, count));
+}
+
+
+
+
+
+
+
+
+
+
+var maxDepth2 = function (root) {
+
     if (!root) return 0;
     if (!root.right && !root.left) return 1;
     let max = 0;
