@@ -18,3 +18,14 @@ var rightSideView = function (root) {
     return res;
 
 };
+
+//dfs solution
+var rightSideView = function (node, level = 0, res = []) {
+    if (!node) return res;
+    if (res[level] == undefined) res.push(node.val);
+    if (node.right) rightSideView(node.right, level + 1, res);
+    if (node.left) rightSideView(node.left, level + 1, res);
+    return res;
+
+
+};
