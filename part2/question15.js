@@ -9,7 +9,7 @@ var dfs = function (node, count) {
 }
 
 
-var maxDepth3 = function (node, count=0) {
+var maxDepth3 = function (node, count = 0) {
     if (!node) return count;
     count++;
     return Math.max(maxDepth3(node.left, count), maxDepth3(node.right, count));
