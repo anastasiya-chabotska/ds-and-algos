@@ -2,7 +2,7 @@ var orangesRotting = function (grid) {
     //find rotten indices, and count of fresh
     let { countFresh, rottenIdx } = findRottendIndeces(grid);
     //rot out
-    let {minutes, freshAfterRot} = rotOut(grid, rottenIdx, countFresh);
+    let { minutes, freshAfterRot } = rotOut(grid, rottenIdx, countFresh);
     //check if fresh is at 0, if yes, return minutes, else -1
     return freshAfterRot > 0 ? -1 : minutes;
 }
@@ -41,7 +41,7 @@ var rotOut = function (grid, rottenIdx, countFresh) {
             for (let i = 0; i < directions.length; i++) {
                 let newRow = curPos[0] + directions[i][0];
                 let newCol = curPos[1] + directions[i][1];
-                if(newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length && grid[newRow][newCol]==1){
+                if (newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length && grid[newRow][newCol] == 1) {
                     freshAfterRot--;
                     grid[newRow][newCol] = 2;
                     queue.push([newRow, newCol]);
@@ -51,6 +51,6 @@ var rotOut = function (grid, rottenIdx, countFresh) {
         }
         minutes++;
     }
-    if(minutes > 0) minutes--;
-    return {minutes, freshAfterRot}
+    if (minutes > 0) minutes--;
+    return { minutes, freshAfterRot }
 }
