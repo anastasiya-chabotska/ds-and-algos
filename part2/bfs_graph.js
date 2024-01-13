@@ -1,14 +1,14 @@
 const bfs = function(graph){
     const queue = [0];
     const result = [];
+    const seen = {};
     while(queue.length){
-        let edgesIdx = queue.shift();
-        let edges = graph[edgesIdx];
-        if(!edges) continue
-        result.push(edgesIdx);
-        graph[edgesIdx] = false;
-        console.log({edgesIdx, edges});
+        const vertex = queue.shift();
+        result.push(vertex);
+        seen[vertex] = true;
+        const edges = graph[vertex];
         for (let i = 0; i < edges.length; i++){
+            if(!seen[edges[i]])
             queue.push(edges[i]);
         }
 
