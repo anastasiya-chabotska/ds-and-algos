@@ -27,3 +27,32 @@ var hasCycle = function (adjacencyList, course, seen = {}) {
     seen[course] = false;
     return isCycle;
 }
+
+
+var canFinishBFS = function (numCourses, prerequisites) {
+    const adjacencyList = new Array(numCourses).fill(0).map(() => []);
+    for (let p = 0; p < prerequisites.length; p++) {
+        const pair = prerequisites[p];
+        adjacencyList[pair[1]].push(pair[0])
+    };
+
+    for (let v = 0; v < numCourses; v++) {
+        const queue = [];
+        const seen = {};
+        const connections = adjacencyList[v];
+        for (let i = 0; i < connections.length; i++) {
+            queue.push(connections[i]);
+        }
+        while (queue.length) {
+            let vertex = queue.shift();
+            seen[vertex] = true;
+            const next = adjacencyList[vertex];
+            for (let i = 0; i < next.length; i++) {
+                if (next[i] === v) return false;
+                queue.push(next[i])
+            }
+        }
+    }
+    return true;
+
+};
