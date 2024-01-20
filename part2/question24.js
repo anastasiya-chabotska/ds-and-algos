@@ -1,3 +1,33 @@
+//solution from course, also there is a way to solve it without adjlist
+var canFinish = function (numCourses, prerequisites) {
+    const inDegree = new Array(numCourses).fill(0);
+    const adjList = inDegree.map(() => []);
+
+    for (let p = 0; p < prerequisites.length; p++) {
+        const pair = prerequisites[p];
+        inDegree[pair[0]]++;
+        adjList[pair[1]].push(pair[0])
+    };
+
+    const stack = [];
+    for (let i = 0; i < inDegree.length; i++) {
+        if (inDegree[i] === 0) stack.push(i)
+    }
+    let count = 0;
+    while (stack.length) {
+        const current = stack.pop();
+        count++;
+        const connections = adjList[current];
+        for (let i = 0; i < connections.length; i++) {
+            const next = connections[i];
+            inDegree[next]--;
+            if (inDegree[next] === 0) stack.push(next);
+        }
+    }
+    return count === numCourses;
+}
+
+
 //my solution topological sort
 var canFinish = function (numCourses, prerequisites) {
     const adjacencyList = new Array(numCourses).fill(0).map(() => []);
