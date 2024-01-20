@@ -1,3 +1,48 @@
+//my solution topological sort
+var canFinish = function (numCourses, prerequisites) {
+    const adjacencyList = new Array(numCourses).fill(0).map(() => []);
+    const inDegree = {};
+    for (let i = 0; i < numCourses; i++) {
+        inDegree[i] = 0;
+    }
+
+    for (let p = 0; p < prerequisites.length; p++) {
+        const pair = prerequisites[p];
+        const course = pair[0];
+        const prereq = pair[1];
+        adjacencyList[prereq].push(course);
+        inDegree[course]++;
+    }
+    console.log(inDegree);
+    console.log(Object.keys(inDegree).length)
+    // console.log(Object.values(inDegree).indexOf(0));
+    while (Object.keys(inDegree).length > 0) {
+        console.log(Object.values(inDegree).indexOf(0))
+        if (Object.values(inDegree).indexOf(0) >= 0) topologicalSort(inDegree, adjacencyList)
+        else return false;
+    }
+    console.log(inDegree)
+    return true;
+
+
+};
+
+var topologicalSort = function (inDegree, adjList) {
+    for (const [key, value] of Object.entries(inDegree)) {
+        if (value === 0) {
+            console.log({ key })
+            const connections = adjList[key];
+            for (let i = 0; i < connections.length; i++) {
+                inDegree[connections[i]]--;
+            }
+            delete inDegree[key]
+        }
+    }
+}
+
+//-----------------------------------------------------------------------
+
+
 var canFinish = function (numCourses, prerequisites) {
     const adjacencyList = new Array(numCourses).fill(0).map(() => []);
     for (let p = 0; p < prerequisites.length; p++) {
