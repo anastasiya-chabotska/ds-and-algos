@@ -9,11 +9,32 @@ var networkDelayTime = function (times, n, k) {
         map[i] = Infinity;
     }
 
-    const connections = adjList[k];
-    for (let i = 0; i < connections.length; i++) {
-        const current = connections[i];
-        map[current[0]] = Math.min(map[current[0]], map[current[1]]);
-
+    let result = -1;
+    map[k] = 0;
+    while (Object.keys(map).length) {
+        if (k == -1) break;
+        const connections = adjList[k];
+        for (let i = 0; i < connections.length; i++) {
+            const current = connections[i];
+            if (map[current[0]])
+                map[current[0]] = Math.min(map[current[0]], map[k] + current[1]);
+        }
+        if (map[k] != Infinity) result = Math.max(result, map[k]);
+        delete map[k];
+        //reset k to the min value
+        k = greedy(map);
     }
-
+    return Object.keys(map).length === 0 ? result : -1;
 };
+
+var greedy = function (map) {
+    let min = Infinity;
+    let minKey = -1;
+    for (let [key, value] of Object.entries(map)) {
+        if (value < min) {
+            minKey = key;
+            min = value
+        }
+    }
+    return minKey;
+}
