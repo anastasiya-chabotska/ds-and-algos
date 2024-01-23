@@ -1,4 +1,4 @@
-class PriorityQueue {
+module.exports = class PriorityQueue {
     //max heap, a < b would be min heap
     constructor(comparator = (a, b) => a > b) {
         //underscore means private, it should only be used by the class
@@ -90,8 +90,8 @@ class PriorityQueue {
 }
 
 
-let heap = new PriorityQueue();
-heap.push(5);
-heap.push(10)
-heap.push(20)
-heap.push(45)
+// let heap = new PriorityQueue();
+// heap.push(5);
+// heap.push(10)
+// heap.push(20)
+// heap.push(45)
