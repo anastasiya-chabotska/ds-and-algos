@@ -1,5 +1,26 @@
 const PriorityQueue = require("./priority_queue");
+//Bellman-Ford
+var networkDelayTime2 = function (times, n, k) {
+    const iterations = n - 1;
+    const timesMap = new Array(n).fill(Infinity);
+    timesMap[k - 1] = 0;
 
+    for (let i = 0; i < iterations; i++) {
+        for (let j = 0; j < times.length; j++) {
+            const source = times[j][0];
+            const target = times[j][1];
+            const time = times[j][2];
+            const curMax = timesMap[target - 1];
+            const newMax = timesMap[source - 1] + time;
+            timesMap[target - 1] = Math.min(curMax, newMax);
+        }
+    }
+
+    return Math.max(...timesMap) === Infinity ? -1 : Math.max(...timesMap);
+}
+
+
+//Dijkstra's
 var networkDelayTime1 = function (times, n, k) {
     const distances = new Array(n).fill(Infinity);
     const adjList = distances.map(() => []);
@@ -76,3 +97,4 @@ var greedy = function (map) {
 }
 let times = [[1, 2, 1], [2, 1, 3]], n = 2, k = 2
 console.log(networkDelayTime1(times, n, k));
+console.log(networkDelayTime2(times, n, k))
