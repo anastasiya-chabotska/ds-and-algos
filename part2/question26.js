@@ -41,9 +41,8 @@ var minCostClimbingStairs2 = function (cost) {
         }
         else{
             const minCost = cost[i] + Math.min(dp[0], dp[1]);
-            const temp = dp[1];
+            dp[0] = dp[1];
             dp[1] = minCost;
-            dp[0] = temp;
         }
       
     }
