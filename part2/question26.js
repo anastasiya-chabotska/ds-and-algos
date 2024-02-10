@@ -20,15 +20,34 @@ var minCostClimbingStairs = function (cost, i = cost.length, dp = []) {
 };
 
 //bottom up approach
-var minCostClimbingStairs2 = function(cost){
+var minCostClimbingStairs2 = function (cost) {
     const dp = new Array(cost.length);
     dp[0] = cost[0];
     dp[1] = cost[1];
-    for(let i = 2; i < cost.length; i++){
-        const minCost = cost[i] + Math.min(dp[i-1], dp[i-2]);
+    for (let i = 2; i < cost.length; i++) {
+        const minCost = cost[i] + Math.min(dp[i - 1], dp[i - 2]);
         dp[i] = minCost;
     }
     return Math.min(dp[cost.length - 1], dp[cost.length - 2])
+}
+
+//bottom up approach optimized for space
+var minCostClimbingStairs2 = function (cost) {
+    const dp = [];
+   
+    for (let i = 0; i < cost.length; i++) {
+        if(i < 2){
+            dp[i] = cost[i]
+        }
+        else{
+            const minCost = cost[i] + Math.min(dp[0], dp[1]);
+            const temp = dp[1];
+            dp[1] = minCost;
+            dp[0] = temp;
+        }
+      
+    }
+    return Math.min(dp[0], dp[1])
 }
 
 let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0]
