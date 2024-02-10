@@ -1,36 +1,36 @@
-const bfs = function(graph){
+const bfs = function (graph) {
     const queue = [0];
     const result = [];
     const seen = {};
-    while(queue.length){
+    while (queue.length) {
         const vertex = queue.shift();
         result.push(vertex);
         seen[vertex] = true;
         const edges = graph[vertex];
-        for (let i = 0; i < edges.length; i++){
-            if(!seen[edges[i]])
-            queue.push(edges[i]);
+        for (let i = 0; i < edges.length; i++) {
+            if (!seen[edges[i]])
+                queue.push(edges[i]);
         }
 
     }
     return result;
-  
+
 }
 
-const bfs2 = function(graph){
+const bfs2 = function (graph) {
     const queue = [0];
     const result = [];
     const seen = {};
-    while(queue.length){
+    while (queue.length) {
         const vertex = queue.shift();
         result.push(vertex);
         seen[vertex] = true;
         const connections = graph[vertex];
-        console.log({vertex})
-        for(let i = 0; i < connections.length; i++){
+        console.log({ vertex })
+        for (let i = 0; i < connections.length; i++) {
             const connection = connections[i];
-            if(connection == 1) console.log({i})
-            if(connection == 1 && !seen[i]) queue.push(i)
+            if (connection == 1) console.log({ i })
+            if (connection == 1 && !seen[i]) queue.push(i)
         }
 
     }
