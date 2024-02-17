@@ -83,4 +83,36 @@ var getProbability = function (n, k, r, c, dp) {
     return res / 8;
 }
 
+//bottom up optimized
+var knightProbability = function(n, k, row, col){
+    let prevDp = new Array(n).fill(0).map(()=>new Array(n).fill(0));
+    let currDp = new Array(n).fill(0).map(()=>new Array(n).fill(0));
+
+    prevDp[row][col]= 1;
+    for(let step = 1; step <=k; step++){
+        for(let row = 0; row < n; row++){
+            for(let col = 0; col < n; col++){
+                for(let i = 0; i < directions.length; i++){
+                    const dir = directions[i];
+                    const prevRow = row + dir[0];
+                    const prevCol = col + dir[1];
+                    if(prevRow >=0 && prevRow < n && prevCol >= 0 && prevCol < n){
+                        currDp[row][col] += prevDp[prevRow][prevCol]/8;
+                    }
+                }
+            }
+        }
+        prevDp = currDp;
+        currDp = new Array(n).fill(0).map(()=>new Array(n).fill(0));
+    }
+
+    let res = 0;
+    for(let i = 0; i < n; i++){
+        for(let j = 0; j < n; j++){
+            res+=prevDp[i][j];
+        }
+    }
+    return res;
+}
+
 knightProbability3(3, 2, 0, 0);
