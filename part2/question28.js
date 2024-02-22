@@ -1,77 +1,78 @@
-var solveSudoku = function(board) {
-    
-    const rows = new Array(9).fill(0).map(()=>new Object());
-    const cols = new Array(9).fill(0).map(()=>new Object());
-    const subs = new Array(9).fill(0).map(()=>new Object());
+var solveSudoku = function (board) {
 
-    for(let row = 0; row < 9; row++){
-        for(let col = 0; col < 9; col++){
+    const rows = new Array(9).fill(0).map(() => new Object());
+    const cols = new Array(9).fill(0).map(() => new Object());
+    const subs = new Array(9).fill(0).map(() => new Object());
+
+    for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
             const curValue = board[row][col];
-            if(curValue !== '.'){
+            if (curValue != '.') {
                 rows[row][curValue] = true;
                 cols[col][curValue] = true;
-                subs[getSubBox(row, col)][curValue] = true;
+                subs[getBoxId(row, col)][curValue] = true;
 
             }
         }
     }
 
-    recurse(0, 0, rows, cols, subs, board);
-    console.log("BOARD ", board)
-    
+
+
+    recurse(board, rows, cols, subs, 0, 0)
+    console.log(board)
 
 
 };
 
-var getSubBox = function(row, col){
-    return Math.floor(row/3)*3 + Math.floor(col/3);
-}
-
-var recurse = function(row1, col1, rows, cols, subs, board){
-    
-    for(let row = 0; row < 9; row++){
-        for(let col = 0; col < 9; col++){
-            if(board[row][col]=='.'){
-                //try 1 - 9
-                for(let i = 1; i <=9; i++){
-                    console.log({row, col, i})
-
-                    if(isValid(row, col, rows, cols, subs, i)){
+var recurse = function (board, rows, cols, subs, r, c) {
+    for (let row = r; row < 9; row++) {
+        for (let col = c; col < 9; col++) {
+            const curCell = board[row][col];
+            if (curCell == '.') {
+                for (let i = 1; i <= 9; i++) {
+                    //check if it's valid
+                    if (isValid(row, col, i, rows, cols, subs)) {
+                        //add to the board
                         board[row][col] = `${i}`;
                         rows[row][i] = true;
                         cols[col][i] = true;
-                        subs[getSubBox(row, col)][i] = true;
-                        console.log("insert ", {i, row, col})
-                        const finished = recurse(row, col, rows, cols, subs, board);
-                        if(finished) return true;
+                        subs[getBoxId(row, col)][i] = true;
+                        let res;
+                        if (col === 8) {
+                            res = recurse(board, rows, cols, subs, row + 1, 0);
 
-                        board[row][col] = '.'
-                        delete rows[row][i];
-                        delete cols[col][i];
-                        delete subs[getSubBox(row, col)][i];
+                        }
+                        else {
+                            res = recurse(board, rows, cols, subs, row, col + 1);
 
+                        }
+                        if (res == true) return true;
+                        else {
+                            board[row][col] = '.';
+                            delete rows[row][i];
+                            delete cols[col][i];
+                            delete subs[getBoxId(row, col)][i];
+                        }
                     }
-                
+
                 }
 
-                if(board[row][col]=='.') {
-                    console.log("still empty ", {row, col})
+                return;
 
-                    return;
-                }
             }
         }
+        c = 0;
 
     }
-
     return true;
-
-    console.log("loops done ", {board})
-
 }
 
-var isValid = function(row, col, rows, cols, subs, val){
-    return !(rows[row][val] || cols[col][val] || subs[getSubBox(row, col)][val])
+var isValid = function (row, col, val, rows, cols, subs) {
+    return !(rows[row][val] || cols[col][val] || subs[getBoxId(row, col)][val])
+}
+
+var getBoxId = function (row, col) {
+    return Math.floor(row / 3) * 3 + Math.floor(col / 3)
 }
 
 /*
@@ -114,6 +115,6 @@ isValid(row, col, rows, cols, subs, val){
 */
 
 
-const board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]
+const board = [["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "."], [".", "9", "8", ".", ".", ".", ".", "6", "."], ["8", ".", ".", ".", "6", ".", ".", ".", "3"], ["4", ".", ".", "8", ".", "3", ".", ".", "1"], ["7", ".", ".", ".", "2", ".", ".", ".", "6"], [".", "6", ".", ".", ".", ".", "2", "8", "."], [".", ".", ".", "4", "1", "9", ".", ".", "5"], [".", ".", ".", ".", "8", ".", ".", "7", "9"]]
 
 solveSudoku(board)
