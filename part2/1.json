@@ -1,0 +1,42 @@
+{
+    "root": {
+        "val": "start",
+        "children": {
+            "a": {
+                "val": "a",
+                "children": {
+                    "p": {
+                        "val": "p",
+                        "children": {
+                            "p": {
+                                "val": "p",
+                                "children": {
+                                    "l": {
+                                        "val": "l",
+                                        "children": {
+                                            "e": {
+                                                "val": "e",
+                                                "children": {},
+                                                "isEnd": true
+                                            }
+                                        },
+                                        "isEnd": false
+                                    }
+                                },
+                                "isEnd": false
+                            },
+                            "e": {
+                                "val": "e",
+                                "children": {},
+                                "isEnd": true
+                            }
+                        },
+                        "isEnd": false
+                    }
+                },
+                "isEnd": false
+            }
+        },
+        "isEnd": false
+    }
+}
