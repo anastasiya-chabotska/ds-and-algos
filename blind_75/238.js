@@ -1,3 +1,4 @@
+//Time: O(n) Space: O(n)
 var productExceptSelf = function (nums) {
     const answer = [];
     const prefix = [];
@@ -17,5 +18,26 @@ var productExceptSelf = function (nums) {
     for (let i = 1; i < nums.length - 1; i++) {
         answer[i] = prefix[i - 1] * postfix[i + 1];
     }
+    return answer;
+};
+
+//Time: O(n) Space: O(1) (result array does not count)
+var productExceptSelf = function (nums) {
+    const answer = [];
+    answer[0] = nums[0]
+
+    let i = 1;
+    while (i < nums.length) {
+        answer[i] = answer[i - 1] * nums[i];
+        i++;
+    }
+
+    let postfix = 1;
+    for (let i = nums.length - 1; i > 0; i--) {
+        let product = answer[i - 1] * postfix;
+        answer[i] = product;
+        postfix = nums[i] * postfix;
+    }
+    answer[0] = 1 * postfix;
     return answer;
 };
