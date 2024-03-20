@@ -9,7 +9,15 @@ class MedianFinder {
 
     findMedian(){
         const arr = this.medianTree.traverse()
-        console.log(arr);
+        if(arr.length % 2 == 0){
+            const mid1 = arr.length/2;
+            const mid2 = mid1 - 1;
+            return (arr[mid1] + arr[mid2])/2;
+        }
+        else{
+            const mid = Math.floor(arr.length/2);
+            return arr[mid];
+        }
     }
 }
 
