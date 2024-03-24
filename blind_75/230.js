@@ -14,3 +14,27 @@ var dfs = function (root, arr) {
 
     }
 }
+
+
+
+var kthSmallest = function (root, k) {
+
+    const stack = [];
+    let cur = root;
+    let n = 0;
+
+   
+    while (cur || stack) {
+        while (cur) {
+            stack.push(cur);
+            cur = cur.left;
+        }
+        cur = stack.pop();
+        n++;
+        if (n == k) return cur.val;
+        cur = cur.right;
+
+
+    }
+
+};
